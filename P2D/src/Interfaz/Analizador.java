@@ -6,9 +6,11 @@
 package Interfaz;
 
 import com.sun.xml.internal.bind.v2.schemagen.xmlschema.Documentation;
+import java.awt.Desktop;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
@@ -82,6 +84,7 @@ public class Analizador extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jButtonHaciaE1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
         jButtonHaciaE = new javax.swing.JButton();
@@ -89,9 +92,34 @@ public class Analizador extends javax.swing.JFrame {
         jButtonAtxt = new javax.swing.JButton();
         jButtonGuardarA = new javax.swing.JButton();
         lblImg = new javax.swing.JLabel();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        M_Archivo = new javax.swing.JMenu();
+        MI_Abrir = new javax.swing.JMenuItem();
+        MI_Guardar = new javax.swing.JMenuItem();
+        MI_Salir = new javax.swing.JMenuItem();
+        M_edicion = new javax.swing.JMenu();
+        MI_copiar = new javax.swing.JMenuItem();
+        MI_cortar = new javax.swing.JMenuItem();
+        MI_pegar = new javax.swing.JMenuItem();
+        MI_Ayuda = new javax.swing.JMenu();
+        MI_mu = new javax.swing.JMenuItem();
+        MI_mt = new javax.swing.JMenuItem();
+        MI_ac = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
+
+        jButtonHaciaE1.setBackground(new java.awt.Color(255, 255, 255));
+        jButtonHaciaE1.setFont(new java.awt.Font("Dubai", 3, 36)); // NOI18N
+        jButtonHaciaE1.setForeground(new java.awt.Color(0, 255, 0));
+        jButtonHaciaE1.setText("Analizar");
+        jButtonHaciaE1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonHaciaE1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButtonHaciaE1);
+        jButtonHaciaE1.setBounds(780, 180, 220, 70);
 
         jTextArea1.setBackground(new java.awt.Color(255, 255, 255));
         jTextArea1.setColumns(20);
@@ -101,7 +129,7 @@ public class Analizador extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTextArea1);
 
         getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(50, 170, 640, 410);
+        jScrollPane1.setBounds(40, 170, 690, 440);
 
         jButtonHaciaE.setBackground(new java.awt.Color(255, 255, 255));
         jButtonHaciaE.setFont(new java.awt.Font("Dubai", 3, 24)); // NOI18N
@@ -113,25 +141,25 @@ public class Analizador extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButtonHaciaE);
-        jButtonHaciaE.setBounds(770, 280, 200, 80);
+        jButtonHaciaE.setBounds(80, 630, 200, 80);
 
         jLabel4.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 2, 48)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Analizador");
         getContentPane().add(jLabel4);
-        jLabel4.setBounds(620, 10, 340, 40);
+        jLabel4.setBounds(350, 0, 340, 40);
 
         jButtonAtxt.setBackground(new java.awt.Color(255, 255, 255));
         jButtonAtxt.setFont(new java.awt.Font("Dubai Medium", 0, 36)); // NOI18N
         jButtonAtxt.setForeground(new java.awt.Color(0, 255, 0));
-        jButtonAtxt.setText("Archivo de Texto");
+        jButtonAtxt.setText("Abrir Archivo de Texto");
         jButtonAtxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonAtxtActionPerformed(evt);
             }
         });
         getContentPane().add(jButtonAtxt);
-        jButtonAtxt.setBounds(60, 70, 340, 60);
+        jButtonAtxt.setBounds(40, 80, 370, 60);
 
         jButtonGuardarA.setBackground(new java.awt.Color(255, 255, 255));
         jButtonGuardarA.setFont(new java.awt.Font("Dubai Medium", 0, 36)); // NOI18N
@@ -143,21 +171,152 @@ public class Analizador extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButtonGuardarA);
-        jButtonGuardarA.setBounds(430, 70, 300, 60);
+        jButtonGuardarA.setBounds(420, 80, 300, 60);
 
         lblImg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/FinesseGrande.png"))); // NOI18N
         getContentPane().add(lblImg);
         lblImg.setBounds(0, 0, 1810, 1300);
 
+        jMenuBar1.setBackground(new java.awt.Color(0, 0, 0));
+        jMenuBar1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jMenuBar1.setForeground(new java.awt.Color(255, 255, 255));
+        jMenuBar1.setToolTipText("");
+        jMenuBar1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jMenuBar1.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+
+        M_Archivo.setBackground(new java.awt.Color(102, 102, 102));
+        M_Archivo.setForeground(new java.awt.Color(51, 255, 51));
+        M_Archivo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/archivo.png"))); // NOI18N
+        M_Archivo.setText("Archivo");
+        M_Archivo.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+
+        MI_Abrir.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.CTRL_MASK));
+        MI_Abrir.setBackground(new java.awt.Color(255, 255, 255));
+        MI_Abrir.setForeground(new java.awt.Color(255, 0, 51));
+        MI_Abrir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/open.png"))); // NOI18N
+        MI_Abrir.setText("Abrir TXT");
+        MI_Abrir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MI_AbrirActionPerformed(evt);
+            }
+        });
+        M_Archivo.add(MI_Abrir);
+
+        MI_Guardar.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_G, java.awt.event.InputEvent.CTRL_MASK));
+        MI_Guardar.setBackground(new java.awt.Color(255, 255, 255));
+        MI_Guardar.setForeground(new java.awt.Color(255, 0, 51));
+        MI_Guardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/save.png"))); // NOI18N
+        MI_Guardar.setText("Guardar TXT");
+        MI_Guardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MI_GuardarActionPerformed(evt);
+            }
+        });
+        M_Archivo.add(MI_Guardar);
+
+        MI_Salir.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_MASK));
+        MI_Salir.setBackground(new java.awt.Color(255, 255, 255));
+        MI_Salir.setForeground(new java.awt.Color(255, 0, 0));
+        MI_Salir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/5215.png"))); // NOI18N
+        MI_Salir.setText("Salir");
+        MI_Salir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MI_SalirActionPerformed(evt);
+            }
+        });
+        M_Archivo.add(MI_Salir);
+
+        jMenuBar1.add(M_Archivo);
+
+        M_edicion.setBackground(new java.awt.Color(102, 102, 102));
+        M_edicion.setForeground(new java.awt.Color(51, 255, 0));
+        M_edicion.setText("Borrar TXT");
+        M_edicion.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+
+        MI_copiar.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.CTRL_MASK));
+        MI_copiar.setBackground(new java.awt.Color(255, 255, 255));
+        MI_copiar.setForeground(new java.awt.Color(255, 0, 0));
+        MI_copiar.setText("Borrar");
+        MI_copiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MI_copiarActionPerformed(evt);
+            }
+        });
+        M_edicion.add(MI_copiar);
+
+        MI_cortar.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_X, java.awt.event.InputEvent.CTRL_MASK));
+        MI_cortar.setBackground(new java.awt.Color(255, 255, 255));
+        MI_cortar.setText("Cortar");
+        MI_cortar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MI_cortarActionPerformed(evt);
+            }
+        });
+        M_edicion.add(MI_cortar);
+
+        MI_pegar.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Z, java.awt.event.InputEvent.CTRL_MASK));
+        MI_pegar.setBackground(new java.awt.Color(255, 255, 255));
+        MI_pegar.setText("Pegar");
+        MI_pegar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MI_pegarActionPerformed(evt);
+            }
+        });
+        M_edicion.add(MI_pegar);
+
+        jMenuBar1.add(M_edicion);
+
+        MI_Ayuda.setBackground(new java.awt.Color(102, 102, 102));
+        MI_Ayuda.setForeground(new java.awt.Color(51, 255, 51));
+        MI_Ayuda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/help.png"))); // NOI18N
+        MI_Ayuda.setText("Ayuda");
+
+        MI_mu.setBackground(new java.awt.Color(255, 255, 255));
+        MI_mu.setForeground(new java.awt.Color(255, 0, 0));
+        MI_mu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/usuario.png"))); // NOI18N
+        MI_mu.setText("Manual de Usuario");
+        MI_mu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MI_muActionPerformed(evt);
+            }
+        });
+        MI_Ayuda.add(MI_mu);
+
+        MI_mt.setBackground(new java.awt.Color(255, 255, 255));
+        MI_mt.setForeground(new java.awt.Color(255, 0, 51));
+        MI_mt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/tec.png"))); // NOI18N
+        MI_mt.setText("Manual Tecnico");
+        MI_mt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MI_mtActionPerformed(evt);
+            }
+        });
+        MI_Ayuda.add(MI_mt);
+
+        MI_ac.setBackground(new java.awt.Color(255, 255, 255));
+        MI_ac.setForeground(new java.awt.Color(255, 0, 51));
+        MI_ac.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/ac.png"))); // NOI18N
+        MI_ac.setText("Acerca de...");
+        MI_ac.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MI_acActionPerformed(evt);
+            }
+        });
+        MI_Ayuda.add(MI_ac);
+
+        jMenuBar1.add(MI_Ayuda);
+
+        setJMenuBar(jMenuBar1);
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+/**
+ * Boton de salir
+ * @param evt 
+ */
     private void jButtonHaciaEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonHaciaEActionPerformed
         // TODO add your handling code here:
-      /*OpcionesFinales entrada3 = new OpcionesFinales();
-        entrada3.show();
-        entrada3.setSize(825, 866);
-        dispose();*/
+     
       System.exit(0);
       
     }//GEN-LAST:event_jButtonHaciaEActionPerformed
@@ -205,6 +364,238 @@ public class Analizador extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jButtonAtxtActionPerformed
 
+    private void MI_AbrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MI_AbrirActionPerformed
+        
+        if (seleccionar.showDialog(null, "Abrir")==JFileChooser.APPROVE_OPTION) {
+            archivo=seleccionar.getSelectedFile();
+            if (archivo.canRead()) {
+                if (archivo.getName().endsWith("txt")) {
+                String documento = AbrirArchivo(archivo);
+                jTextArea1.setText(documento);
+               
+            }else{
+                JOptionPane.showMessageDialog(null, "Archivo no disponible");
+            }
+            }
+            
+            
+        }
+       
+        
+        /**llamamos el metodo que permite cargar la ventana*/
+        /*
+        ArchivoLeer=new JFileChooser();
+        //Hace la verificación si pertenece al rango.
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("LENGUAJES FORMALES (.prac1lfp)", "prac1lfp");
+        ArchivoLeer.setFileFilter(filter);
+
+        //Verifica si es o no
+        int seleccion = ArchivoLeer.showOpenDialog(null);
+        //si es aprovado, sigue con el paso de abrir el archivo
+        if (seleccion == JFileChooser.APPROVE_OPTION) { //lanza la ventana
+
+            this.archivo = ArchivoLeer.getSelectedFile(); //seleccione el archivo de arriba
+            this.leer=ArchivoLeer.getSelectedFile();
+
+            try {
+                fr = new FileReader(archivo); //abre el archivo seleccionado
+                entrada = new BufferedReader(fr); // lee la linea
+
+                while ((this.linea = entrada.readLine()) != null) {
+                    Pantalla_Principal.T_texto.setText(T_texto.getText() + "\n" + linea);
+                    buscar=T_texto.getText();
+                    salto++;
+
+                }
+
+                //System.out.println("****");
+                //System.out.println(fr);
+                //System.out.println("****");
+
+            }catch (IOException e) {
+                e.printStackTrace();
+            }
+        }*/
+
+    }//GEN-LAST:event_MI_AbrirActionPerformed
+
+    private void MI_GuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MI_GuardarActionPerformed
+      
+         if (seleccionar.showDialog(null, "Guardar")==JFileChooser.APPROVE_OPTION) {
+            archivo=seleccionar.getSelectedFile();
+            if (archivo.getName().endsWith("txt")) {
+                String Documento= jTextArea1.getText();
+                String mensaje = GuardarArchivo(archivo, Documento);
+                if (mensaje!=null) {
+                    JOptionPane.showMessageDialog(null, mensaje);
+                    
+                    
+                }else{
+                    JOptionPane.showMessageDialog(null, "Archivo No Compatible");
+                    
+                }
+                
+            }else{
+                JOptionPane.showMessageDialog(null, "Guardar Documento de texto");
+            }
+        }
+        
+        /* FileNameExtensionFilter filtro = new FileNameExtensionFilter("LENGUAJES FORMALES (.graficlfp)", "graficlfp");
+        try {
+            //System.getProperty("user.dir") Abre el JFileChooser donde esta el ejecutable
+            JFileChooser fc = new JFileChooser();
+            fc.setFileFilter(filtro);
+            fc.showSaveDialog(this); //Muestra el diálogo
+            File Guardar = fc.getSelectedFile();
+
+            try {
+                if (Guardar.exists()) {
+
+                    try {
+
+                        FileWriter w = new FileWriter(Guardar);
+                        BufferedWriter bw = new BufferedWriter(w);
+                        PrintWriter wr = new PrintWriter(bw);
+                        String[] als = T_texto.getText().split("\n");
+
+                        for (int a = 0; a < als.length; a++) {
+                            wr.write(als[a]);
+                            wr.println();
+                        }
+
+                        wr.close();
+                        bw.close();
+
+                    } catch (IOException ex) {
+
+                    }
+
+                } else {
+
+                    if (Guardar.mkdir()) {
+
+                        String ruba_nueva = Guardar.getPath() + "\\";
+                        FileWriter w = new FileWriter(ruba_nueva + Guardar.getName() + ".graficlfp");
+                        BufferedWriter bw = new BufferedWriter(w);
+                        PrintWriter wr = new PrintWriter(bw);
+                        String[] als = T_texto.getText().split("\n");
+
+                        for (int a = 0; a < als.length; a++) {
+                            wr.write(als[a]);
+                            wr.println();
+                        }
+
+                        wr.close();
+                        bw.close();
+                    } else {
+
+                    }
+                }
+
+            } catch (IOException ioe) {
+                System.out.println(ioe); //Muestra por consola los errores
+            }
+
+        } catch (NullPointerException e) {
+
+        }*/
+    }//GEN-LAST:event_MI_GuardarActionPerformed
+
+    private void MI_SalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MI_SalirActionPerformed
+              // TODO add your handling code here:
+              
+               System.exit(0); 
+    }//GEN-LAST:event_MI_SalirActionPerformed
+
+    private void MI_muActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MI_muActionPerformed
+        
+        /*try {
+            File path;
+            path = new File ("Manuales/ManualdeUsuario.pdf");
+            Desktop.getDesktop().open(path);
+        }catch (IOException ex) {
+        }*/
+
+    }//GEN-LAST:event_MI_muActionPerformed
+
+    /**
+     * Método privado para poder abrir mi manual técnico
+     * @param evt 
+     */
+    private void MI_mtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MI_mtActionPerformed
+       
+        
+        try {
+            File path;
+            path = new File ("Manuales/ManualTecnicoP2.docx");
+            Desktop.getDesktop().open(path);
+        }catch (IOException ex) {
+        }
+        
+    }//GEN-LAST:event_MI_mtActionPerformed
+
+    /**
+     * Mostrar mi acerca de...
+     * @param evt 
+     */
+    private void MI_acActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MI_acActionPerformed
+        JOptionPane.showMessageDialog(null,"Creado por : Daniel Eduardo Fernández Ovando"+ "\n"+ "No. Carnet: 201731816" +"\n" + "Versión: 1.0");
+    }//GEN-LAST:event_MI_acActionPerformed
+
+    private void MI_copiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MI_copiarActionPerformed
+        jTextArea1.setText(""); 
+        
+        
+       /* Copiar = T_texto.getText();
+        JOptionPane.showMessageDialog(null, "Su área de texto a sido copiada");*/
+    }//GEN-LAST:event_MI_copiarActionPerformed
+
+    private void MI_cortarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MI_cortarActionPerformed
+       
+        /*String textoSeleccionado;
+        try {
+
+            textoSeleccionado = T_texto.getSelectedText(); //guardamos el texto seleccionado
+            //ahora cortamos nuestra cadena desde el principio hasta donde empieza la selección
+            String cadenaCortada = T_texto.getText (0 , T_texto. getSelectionStart () );
+            //ahora pegamos el resto de texto desopues de la selección de nuestro texto original el texto seleccionado
+
+            cadenaCortada += T_texto.getText ( T_texto.getSelectionEnd( ) , T_texto. getText() . length() - T_texto. getText ( 0 , T_texto.getSelectionEnd () ) . length() ) ;
+            //lo visualizamos en nuestro JtextArea
+            T_texto.setText(cadenaCortada);
+        } catch (BadLocationException ex) {
+            System.out.println("Error"+ex);
+
+            //En caso de que haya error solo reiniciamos nuestra variable
+        }
+        T_texto.setText(""); */
+    }//GEN-LAST:event_MI_cortarActionPerformed
+
+    private void MI_pegarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MI_pegarActionPerformed
+       /* String aux =Copiar;
+
+        try {
+            FileWriter fw = new FileWriter("DocumentoParaPegar.txt");
+
+            fw.write(aux);
+
+            fw.close();
+
+        } catch (IOException ex) {
+            Logger.getLogger(Pantalla_Principal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        JOptionPane.showMessageDialog(null, "Su archivo ha sido creado"); */
+
+    }//GEN-LAST:event_MI_pegarActionPerformed
+
+    private void jButtonHaciaE1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonHaciaE1ActionPerformed
+        // TODO add your handling code here:
+        
+        
+        
+    }//GEN-LAST:event_jButtonHaciaE1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -241,10 +632,24 @@ public class Analizador extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem MI_Abrir;
+    private javax.swing.JMenu MI_Ayuda;
+    private javax.swing.JMenuItem MI_Guardar;
+    private javax.swing.JMenuItem MI_Salir;
+    private javax.swing.JMenuItem MI_ac;
+    private javax.swing.JMenuItem MI_copiar;
+    private javax.swing.JMenuItem MI_cortar;
+    private javax.swing.JMenuItem MI_mt;
+    private javax.swing.JMenuItem MI_mu;
+    private javax.swing.JMenuItem MI_pegar;
+    private javax.swing.JMenu M_Archivo;
+    private javax.swing.JMenu M_edicion;
     private javax.swing.JButton jButtonAtxt;
     private javax.swing.JButton jButtonGuardarA;
     private javax.swing.JButton jButtonHaciaE;
+    private javax.swing.JButton jButtonHaciaE1;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JLabel lblImg;
