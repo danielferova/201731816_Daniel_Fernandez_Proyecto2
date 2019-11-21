@@ -39,7 +39,7 @@ public String [] cuento;
         jbMostrar = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jtrecuento = new javax.swing.JTextArea();
+        jtokens = new javax.swing.JTextArea();
         jButtonsalir = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -54,16 +54,17 @@ public String [] cuento;
         getContentPane().setLayout(null);
 
         jbMostrar.setBackground(new java.awt.Color(255, 255, 255));
-        jbMostrar.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jbMostrar.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jbMostrar.setForeground(new java.awt.Color(51, 255, 51));
-        jbMostrar.setText("Mostrar");
+        jbMostrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/reporte.png"))); // NOI18N
+        jbMostrar.setText("Mostrar TOKENS");
         jbMostrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbMostrarActionPerformed(evt);
             }
         });
         getContentPane().add(jbMostrar);
-        jbMostrar.setBounds(580, 120, 140, 50);
+        jbMostrar.setBounds(580, 120, 260, 50);
 
         jButton1.setBackground(new java.awt.Color(255, 255, 255));
         jButton1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
@@ -75,14 +76,15 @@ public String [] cuento;
             }
         });
         getContentPane().add(jButton1);
-        jButton1.setBounds(580, 190, 190, 50);
+        jButton1.setBounds(580, 190, 150, 40);
 
-        jtrecuento.setBackground(new java.awt.Color(255, 255, 255));
-        jtrecuento.setColumns(20);
-        jtrecuento.setForeground(new java.awt.Color(0, 0, 0));
-        jtrecuento.setRows(5);
-        jtrecuento.setKeymap(null);
-        jScrollPane2.setViewportView(jtrecuento);
+        jtokens.setBackground(new java.awt.Color(255, 255, 255));
+        jtokens.setColumns(20);
+        jtokens.setFont(new java.awt.Font("Dialog", 3, 14)); // NOI18N
+        jtokens.setForeground(new java.awt.Color(0, 0, 0));
+        jtokens.setRows(5);
+        jtokens.setKeymap(null);
+        jScrollPane2.setViewportView(jtokens);
 
         getContentPane().add(jScrollPane2);
         jScrollPane2.setBounds(50, 110, 490, 330);
@@ -103,25 +105,25 @@ public String [] cuento;
         jLabel3.setForeground(new java.awt.Color(51, 255, 0));
         jLabel3.setText("Componentes");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(300, 60, 140, 30);
+        jLabel3.setBounds(250, 70, 140, 30);
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(51, 255, 0));
         jLabel5.setText("No.");
         getContentPane().add(jLabel5);
-        jLabel5.setBounds(270, 60, 60, 30);
+        jLabel5.setBounds(180, 70, 60, 30);
 
         jLabel4.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(51, 255, 0));
         jLabel4.setText("Recuento");
         getContentPane().add(jLabel4);
-        jLabel4.setBounds(200, 60, 110, 30);
+        jLabel4.setBounds(80, 70, 110, 30);
 
         jLabel2.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 255, 0));
-        jLabel2.setText("Recuento");
+        jLabel2.setText("Recuento TOKEN * TOKEN");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(230, 10, 180, 40);
+        jLabel2.setBounds(170, 20, 280, 40);
 
         jButtonHaciaE.setBackground(new java.awt.Color(255, 255, 255));
         jButtonHaciaE.setFont(new java.awt.Font("Dubai", 3, 24)); // NOI18N
@@ -187,7 +189,7 @@ public String [] cuento;
             String [] pala = t.split(" ");
             int canti = pala.length;
 
-            jtrecuento.setText(jtrecuento.getText()+ "" +canti + " ------------ " +p +"-----");
+            jtokens.setText(jtokens.getText()+ "" +canti + " ------------ " +p +"-----");
         }
     }//GEN-LAST:event_jbMostrarActionPerformed
 
@@ -219,7 +221,7 @@ public String [] cuento;
                 }
 
             }
-            System.out.println("\nEl caracter mas repitdo es = "+charCadena);
+            System.out.println("\nEl caracter mas repetido es = "+charCadena);
             System.out.println("y se repite "+numeroVeces+" veces");
 
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -281,6 +283,6 @@ public String [] cuento;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JButton jbMostrar;
-    public static javax.swing.JTextArea jtrecuento;
+    public static javax.swing.JTextArea jtokens;
     // End of variables declaration//GEN-END:variables
 }

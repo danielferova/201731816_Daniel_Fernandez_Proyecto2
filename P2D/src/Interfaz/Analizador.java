@@ -231,7 +231,7 @@ public class Analizador extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButtonAnalizar);
-        jButtonAnalizar.setBounds(400, 590, 210, 70);
+        jButtonAnalizar.setBounds(400, 610, 210, 70);
 
         jTextArea1.setBackground(new java.awt.Color(255, 255, 255));
         jTextArea1.setColumns(20);
@@ -523,8 +523,7 @@ public class Analizador extends javax.swing.JFrame {
     }//GEN-LAST:event_MI_copiarActionPerformed
 
     private void jButtonAnalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAnalizarActionPerformed
-        // TODO add your handling code here:
-
+     
         String almacenA = jTextArea1.getText();
         String L = "";
         int ConOperacional = 0;
@@ -582,7 +581,7 @@ public class Analizador extends javax.swing.JFrame {
                 //Rfila[j]=fila1;
                 //Rcolumna[j]=columna1;
 
-                //  System.out.println("FILA: "+ ""+ fila1 +" "+ "COLUMNA: "+ columna1 );
+                  System.out.println("FILA: "+ ""+ fila1 +" "+ "COLUMNA: "+ columna1 );
             } else if (L.equals(" ")) {
                 columna1++;
                 System.out.println("COLUMNA: " + columna1);
@@ -594,7 +593,7 @@ public class Analizador extends javax.swing.JFrame {
 
         }
 
-        System.out.println("Operacionales: " + ConOperacional + " Relacionales: " + ConOperacional + " Agrupación: " + ConAgrupacion + " Errores:" + ConERROR);
+        //System.out.println("Operacionales: " + ConOperacional + " Relacionales: " + ConOperacional + " Agrupación: " + ConAgrupacion + " Errores:" + ConERROR);
 
     }//GEN-LAST:event_jButtonAnalizarActionPerformed
 
