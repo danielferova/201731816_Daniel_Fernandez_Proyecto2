@@ -7,9 +7,13 @@ package Interfaz;
 
 import com.sun.xml.internal.bind.v2.schemagen.xmlschema.Documentation;
 import java.awt.Desktop;
+import static java.awt.PageAttributes.MediaType.C;
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -20,12 +24,73 @@ import javax.swing.JOptionPane;
  */
 public class Analizador extends javax.swing.JFrame {
     //mis atributos
+    
+    private leer leectura = new leer();
+    Analizador analisis = null;
+    
+    
     JFileChooser seleccionar = new JFileChooser();
     File archivo;
     FileInputStream entrada;
     FileOutputStream salida;
     
+    JFileChooser ArchivoLeer;
+File archivo1;
+String linea;
+String buscar;
+String b;
 
+
+
+ 
+String rn;
+char alamacen;
+int contadorPalabras;
+int numTokens;
+FileReader fr;
+BufferedReader entrada1;
+File leer;
+
+
+public static String [] base; //vector almacena
+public static String [] reconoce;
+public String Almacena;
+public int ConERROR;
+
+//variables para mandar
+String palabra;
+
+public int fil=0;
+public int colu=0;
+int No = 0;
+public int salto=0;
+
+public int fila1=0;
+public int columna1=0;
+public int[] Rfila;
+public int [] Rcolumna;
+
+public String [] Errores;
+
+
+
+//TextArea T_texto;
+
+char[] caracter = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n','ñ', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'A', 'B', 'C', 'D', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N','Ñ', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0'};
+
+    //strings
+    String identificadores= "a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z,A,B,C,D,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z";
+    String numeros = "0,1,2,3,4,5,6,7,8,9";
+    String operacionales ="+,-,*,/,^,**,//,++,--,^^";
+    String [] agrupacion ={"(,),[,],{,}"};
+    String [] relacionales= {"<,>,==,="};
+    
+    String [] errores1;
+    private Object data;
+    String Copiar;
+    
+    
+    
     /**
      * Creates new form Analizador
      */
@@ -33,7 +98,7 @@ public class Analizador extends javax.swing.JFrame {
         initComponents();
         
          this.setLocationRelativeTo(null);
-         
+         setSize(1190, 960);
         setTitle("ANALIZADOR");
     }
     
@@ -84,7 +149,10 @@ public class Analizador extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButtonHaciaE1 = new javax.swing.JButton();
+        jButtonHaciaInicio = new javax.swing.JButton();
+        jButtonSalidaError = new javax.swing.JButton();
+        jbArchsalida = new javax.swing.JButton();
+        jButtonAnalizar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
         jButtonHaciaE = new javax.swing.JButton();
@@ -109,17 +177,61 @@ public class Analizador extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
 
-        jButtonHaciaE1.setBackground(new java.awt.Color(255, 255, 255));
-        jButtonHaciaE1.setFont(new java.awt.Font("Dubai", 3, 36)); // NOI18N
-        jButtonHaciaE1.setForeground(new java.awt.Color(0, 255, 0));
-        jButtonHaciaE1.setText("Analizar");
-        jButtonHaciaE1.addActionListener(new java.awt.event.ActionListener() {
+        jButtonHaciaInicio.setBackground(new java.awt.Color(255, 255, 255));
+        jButtonHaciaInicio.setFont(new java.awt.Font("Dubai", 3, 24)); // NOI18N
+        jButtonHaciaInicio.setForeground(new java.awt.Color(0, 255, 0));
+        jButtonHaciaInicio.setText("Regresar");
+        jButtonHaciaInicio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonHaciaE1ActionPerformed(evt);
+                jButtonHaciaInicioActionPerformed(evt);
             }
         });
-        getContentPane().add(jButtonHaciaE1);
-        jButtonHaciaE1.setBounds(780, 180, 220, 70);
+        getContentPane().add(jButtonHaciaInicio);
+        jButtonHaciaInicio.setBounds(30, 610, 170, 60);
+
+        jButtonSalidaError.setBackground(new java.awt.Color(255, 255, 255));
+        jButtonSalidaError.setFont(new java.awt.Font("Dubai", 1, 18)); // NOI18N
+        jButtonSalidaError.setForeground(new java.awt.Color(0, 255, 0));
+        jButtonSalidaError.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/copy.png"))); // NOI18N
+        jButtonSalidaError.setText("Archivo de Errores");
+        jButtonSalidaError.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSalidaErrorActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButtonSalidaError);
+        jButtonSalidaError.setBounds(720, 200, 220, 50);
+
+        jbArchsalida.setBackground(new java.awt.Color(255, 255, 255));
+        jbArchsalida.setFont(new java.awt.Font("Dubai", 1, 18)); // NOI18N
+        jbArchsalida.setForeground(new java.awt.Color(51, 255, 0));
+        jbArchsalida.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/reporte.png"))); // NOI18N
+        jbArchsalida.setText("Archivo de Salida");
+        jbArchsalida.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbArchsalidaActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jbArchsalida);
+        jbArchsalida.setBounds(720, 250, 220, 50);
+
+        jButtonAnalizar.setBackground(new java.awt.Color(255, 255, 255));
+        jButtonAnalizar.setFont(new java.awt.Font("Dubai", 3, 18)); // NOI18N
+        jButtonAnalizar.setForeground(new java.awt.Color(0, 255, 0));
+        jButtonAnalizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/1073681.png"))); // NOI18N
+        jButtonAnalizar.setText("Analizar");
+        jButtonAnalizar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButtonAnalizarMouseClicked(evt);
+            }
+        });
+        jButtonAnalizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAnalizarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButtonAnalizar);
+        jButtonAnalizar.setBounds(410, 590, 160, 60);
 
         jTextArea1.setBackground(new java.awt.Color(255, 255, 255));
         jTextArea1.setColumns(20);
@@ -129,7 +241,7 @@ public class Analizador extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTextArea1);
 
         getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(40, 170, 690, 440);
+        jScrollPane1.setBounds(30, 120, 690, 460);
 
         jButtonHaciaE.setBackground(new java.awt.Color(255, 255, 255));
         jButtonHaciaE.setFont(new java.awt.Font("Dubai", 3, 24)); // NOI18N
@@ -141,16 +253,16 @@ public class Analizador extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButtonHaciaE);
-        jButtonHaciaE.setBounds(80, 630, 200, 80);
+        jButtonHaciaE.setBounds(1130, 10, 140, 50);
 
         jLabel4.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 2, 48)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("Analizador");
+        jLabel4.setText("Analizador Léxico");
         getContentPane().add(jLabel4);
-        jLabel4.setBounds(350, 0, 340, 40);
+        jLabel4.setBounds(200, 70, 340, 40);
 
         jButtonAtxt.setBackground(new java.awt.Color(255, 255, 255));
-        jButtonAtxt.setFont(new java.awt.Font("Dubai Medium", 0, 36)); // NOI18N
+        jButtonAtxt.setFont(new java.awt.Font("Dubai Medium", 0, 18)); // NOI18N
         jButtonAtxt.setForeground(new java.awt.Color(0, 255, 0));
         jButtonAtxt.setText("Abrir Archivo de Texto");
         jButtonAtxt.addActionListener(new java.awt.event.ActionListener() {
@@ -159,10 +271,10 @@ public class Analizador extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButtonAtxt);
-        jButtonAtxt.setBounds(40, 80, 370, 60);
+        jButtonAtxt.setBounds(720, 120, 220, 40);
 
         jButtonGuardarA.setBackground(new java.awt.Color(255, 255, 255));
-        jButtonGuardarA.setFont(new java.awt.Font("Dubai Medium", 0, 36)); // NOI18N
+        jButtonGuardarA.setFont(new java.awt.Font("Dubai Medium", 0, 18)); // NOI18N
         jButtonGuardarA.setForeground(new java.awt.Color(0, 255, 0));
         jButtonGuardarA.setText("Guardar Archivo");
         jButtonGuardarA.addActionListener(new java.awt.event.ActionListener() {
@@ -171,7 +283,7 @@ public class Analizador extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButtonGuardarA);
-        jButtonGuardarA.setBounds(420, 80, 300, 60);
+        jButtonGuardarA.setBounds(720, 160, 220, 40);
 
         lblImg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/FinesseGrande.png"))); // NOI18N
         getContentPane().add(lblImg);
@@ -274,7 +386,7 @@ public class Analizador extends javax.swing.JFrame {
         MI_mu.setBackground(new java.awt.Color(255, 255, 255));
         MI_mu.setForeground(new java.awt.Color(255, 0, 0));
         MI_mu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/usuario.png"))); // NOI18N
-        MI_mu.setText("Manual de Usuario");
+        MI_mu.setText("GRA");
         MI_mu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MI_muActionPerformed(evt);
@@ -310,17 +422,12 @@ public class Analizador extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-/**
- * Boton de salir
- * @param evt 
- */
-    private void jButtonHaciaEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonHaciaEActionPerformed
-        // TODO add your handling code here:
-     
-      System.exit(0);
-      
-    }//GEN-LAST:event_jButtonHaciaEActionPerformed
 
+    
+    /**
+     * Botón de guardar mi txt
+     * @param evt 
+     */
     private void jButtonGuardarAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGuardarAActionPerformed
         // TODO add your handling code here:
         if (seleccionar.showDialog(null, "Guardar")==JFileChooser.APPROVE_OPTION) {
@@ -345,6 +452,10 @@ public class Analizador extends javax.swing.JFrame {
         //gTablero(6, 4);
     }//GEN-LAST:event_jButtonGuardarAActionPerformed
 
+    /**
+     * Botón abrir txt
+     * @param evt 
+     */
     private void jButtonAtxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAtxtActionPerformed
    
         if (seleccionar.showDialog(null, "Abrir")==JFileChooser.APPROVE_OPTION) {
@@ -364,6 +475,10 @@ public class Analizador extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jButtonAtxtActionPerformed
 
+    /**
+     * Método para abrir mi txt
+     * @param evt 
+     */
     private void MI_AbrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MI_AbrirActionPerformed
         
         if (seleccionar.showDialog(null, "Abrir")==JFileChooser.APPROVE_OPTION) {
@@ -382,43 +497,14 @@ public class Analizador extends javax.swing.JFrame {
         }
        
         
-        /**llamamos el metodo que permite cargar la ventana*/
-        /*
-        ArchivoLeer=new JFileChooser();
-        //Hace la verificación si pertenece al rango.
-        FileNameExtensionFilter filter = new FileNameExtensionFilter("LENGUAJES FORMALES (.prac1lfp)", "prac1lfp");
-        ArchivoLeer.setFileFilter(filter);
-
-        //Verifica si es o no
-        int seleccion = ArchivoLeer.showOpenDialog(null);
-        //si es aprovado, sigue con el paso de abrir el archivo
-        if (seleccion == JFileChooser.APPROVE_OPTION) { //lanza la ventana
-
-            this.archivo = ArchivoLeer.getSelectedFile(); //seleccione el archivo de arriba
-            this.leer=ArchivoLeer.getSelectedFile();
-
-            try {
-                fr = new FileReader(archivo); //abre el archivo seleccionado
-                entrada = new BufferedReader(fr); // lee la linea
-
-                while ((this.linea = entrada.readLine()) != null) {
-                    Pantalla_Principal.T_texto.setText(T_texto.getText() + "\n" + linea);
-                    buscar=T_texto.getText();
-                    salto++;
-
-                }
-
-                //System.out.println("****");
-                //System.out.println(fr);
-                //System.out.println("****");
-
-            }catch (IOException e) {
-                e.printStackTrace();
-            }
-        }*/
+     
 
     }//GEN-LAST:event_MI_AbrirActionPerformed
 
+    /**
+     * Método para guardar mi txt
+     * @param evt 
+     */
     private void MI_GuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MI_GuardarActionPerformed
       
          if (seleccionar.showDialog(null, "Guardar")==JFileChooser.APPROVE_OPTION) {
@@ -440,67 +526,12 @@ public class Analizador extends javax.swing.JFrame {
             }
         }
         
-        /* FileNameExtensionFilter filtro = new FileNameExtensionFilter("LENGUAJES FORMALES (.graficlfp)", "graficlfp");
-        try {
-            //System.getProperty("user.dir") Abre el JFileChooser donde esta el ejecutable
-            JFileChooser fc = new JFileChooser();
-            fc.setFileFilter(filtro);
-            fc.showSaveDialog(this); //Muestra el diálogo
-            File Guardar = fc.getSelectedFile();
-
-            try {
-                if (Guardar.exists()) {
-
-                    try {
-
-                        FileWriter w = new FileWriter(Guardar);
-                        BufferedWriter bw = new BufferedWriter(w);
-                        PrintWriter wr = new PrintWriter(bw);
-                        String[] als = T_texto.getText().split("\n");
-
-                        for (int a = 0; a < als.length; a++) {
-                            wr.write(als[a]);
-                            wr.println();
-                        }
-
-                        wr.close();
-                        bw.close();
-
-                    } catch (IOException ex) {
-
-                    }
-
-                } else {
-
-                    if (Guardar.mkdir()) {
-
-                        String ruba_nueva = Guardar.getPath() + "\\";
-                        FileWriter w = new FileWriter(ruba_nueva + Guardar.getName() + ".graficlfp");
-                        BufferedWriter bw = new BufferedWriter(w);
-                        PrintWriter wr = new PrintWriter(bw);
-                        String[] als = T_texto.getText().split("\n");
-
-                        for (int a = 0; a < als.length; a++) {
-                            wr.write(als[a]);
-                            wr.println();
-                        }
-
-                        wr.close();
-                        bw.close();
-                    } else {
-
-                    }
-                }
-
-            } catch (IOException ioe) {
-                System.out.println(ioe); //Muestra por consola los errores
-            }
-
-        } catch (NullPointerException e) {
-
-        }*/
+      
     }//GEN-LAST:event_MI_GuardarActionPerformed
-
+    /**
+     * Salir en la pestaña
+     * @param evt 
+     */
     private void MI_SalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MI_SalirActionPerformed
               // TODO add your handling code here:
               
@@ -589,12 +620,304 @@ public class Analizador extends javax.swing.JFrame {
 
     }//GEN-LAST:event_MI_pegarActionPerformed
 
-    private void jButtonHaciaE1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonHaciaE1ActionPerformed
+    private void jButtonAnalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAnalizarActionPerformed
         // TODO add your handling code here:
         
+         String almacenA = jTextArea1.getText();   
+        String L="";
+        int ConOperacional=0;
+        int ConAgrupacion=0;
+        int ConRelacionales =0;
+        int ConLetra=0;
+        int ConNumero=0;
+       
         
+        ConERROR=0;
         
-    }//GEN-LAST:event_jButtonHaciaE1ActionPerformed
+       for(int j=0;j<=almacenA.length()-1;j++){
+             L=""+almacenA.charAt(j);            
+           
+             
+              if (L.equals("+") | L.equals("-")| L.equals("*")| L.equals("/")| L .equals("^")| L .equals("**")|  L.equals("//")| L.equals("^^") ){
+                          
+                          ConOperacional++;
+                          System.out.println("Operacional" +" * "+ConOperacional);
+                          
+                                                    
+                          
+                      }else if ((L.equals("(") | L.equals(")") | L.equals("[") | L.equals("]") | L.equals(":") || L.equals(";") |  L.equals(",") | L.equals(";") | L.equals(":") | L.equals("."))) {
+                          
+                           ConAgrupacion++;
+                           System.out.println("Agrupación " + " * "+ConAgrupacion);
+                         
+                           
+                      
+                      }else if ((L.equals("<") | L.equals(">") | L.equals("==") | (L.equals("=")))) {
+                       
+                           ConRelacionales++;
+                           System.out.println("Relacional"+ " * "+ConRelacionales);
+                           
+                           
+                     
+                      
+                      }else if ((L.equals("@") )){
+                          //jtA.setText("@" + "\n");
+                         rn="@";
+                          
+                          ConERROR++;
+                           System.out.println("ERROR"+" * "+ConERROR);
+                             
+                      
+                      }else if ((L.equals("#") )){
+                          //jtA.setText("@" + "\n");
+                          rn="#";
+                          
+                          ConERROR++;
+                           System.out.println("ERROR"+" * "+ConERROR);     
+                           
+                           
+               
+              }else if ((L.equals("0") |L.equals("1") | L.equals("2") | L.equals("3") | L.equals("4") | L.equals("5") | L.equals("6") | L.equals("7")  | L.equals("8") | L.equals("9")   )){
+                 
+                   ConNumero++;
+                   System.out.println("Número "+" * "+ConLetra);
+              
+              }else if (L.equals(identificadores)){
+                  ConLetra++;
+                  System.out.println("Letra"+" * "+ConLetra);
+                  
+              
+              }else if (L.equals("\n")){
+                  fila1++;
+                  columna1=0;
+                  //Rfila[j]=fila1;
+                 //Rcolumna[j]=columna1;
+                  
+                //  System.out.println("FILA: "+ ""+ fila1 +" "+ "COLUMNA: "+ columna1 );
+                  
+              }else if (L.equals(" ")){
+                  columna1++;
+                  System.out.println("COLUMNA: " + columna1 );
+                  //Rcolumna[j]=columna1;
+                  
+                  
+              }else{
+                  System.out.println("ID");
+              }
+        
+           
+        }
+ 
+      System.out.println("Operacionales: "+ ConOperacional + " Relacionales: " + ConOperacional + " Agrupación: "+ ConAgrupacion+ " Errores:" + ConERROR );
+      
+    }//GEN-LAST:event_jButtonAnalizarActionPerformed
+
+    
+    /**
+     * Arhivo de salida de HTML mostrando tokens
+     * @param evt 
+     */
+    private void jbArchsalidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbArchsalidaActionPerformed
+        int numero=0;
+        if (ConERROR<1){
+
+            String b = jTextArea1.getText();
+            base = jTextArea1.getText().split("\\s");
+            //String[] o=base;
+            String L="";
+
+            try{
+                FileWriter fw = new FileWriter("Reportes1/Tokens.html");
+                fw.write("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\" />" + "\n"  + "\n");
+                fw.write("<HTML><HEAD><TITLE>LENGUAJES FORMALES DE PROGRAMACIÓN</TITLE></HEAD>" + "\n" + "\n");
+                fw.write("<H1><CENTER><B><FONT SIZE=\"9\" COLOR=\"BLUE\">LISTADO DE TOKEN'S</FONT></B><BR></H1>" + "\n" + "\n");
+                fw.write("<HR>" + "\n" + "\n");
+                fw.write("<BR><CENTER><TABLE BORDER=1>\n");
+                fw.write("	<TR>\n");
+                fw.write("	<TD ALIGN=\"CENTER\"><FONT COLOR=\"BLACK\"><B>NO.</B></FONT></TD>\n");
+                fw.write("	<TD ALIGN=\"CENTER\"><FONT COLOR=\"BLACK\"><B>DESCRIPCIÓN</B></FONT></TD>\n");
+                fw.write("	<TD ALIGN=\"CENTER\"><FONT COLOR=\"BLACK\"><B>LEXEMA</B></FONT></TD>\n");
+
+                fw.write("	<TD ALIGN=\"CENTER\"><FONT COLOR=\"BLACK\"><B>FILA</B></FONT></TD>\n");
+                fw.write("	<TD ALIGN=\"CENTER\"><FONT COLOR=\"BLACK\"><B>COLUMNA</B></FONT></TD>\n");
+                fw.write("	<TD ALIGN=\"CENTER\"><FONT COLOR=\"BLACK\"><B>TOKEN</B></FONT></TD>\n");
+                fw.write("	</TR>\n");
+
+                for (int i=0; i<base.length;i++){
+                    numero++;
+
+                    fw.write("	<TR>\n");
+                    fw.write("	<TD ALIGN=\"CENTER\"><FONT COLOR=\"RED\">" + numero + "</FONT></TD>\n");
+                    fw.write("	<TD ALIGN=\"CENTER\"><FONT COLOR=\"BLUE\">" + base[i] + "</FONT></TD>\n");
+
+                    if (base[i].equals("*") | base[i].equals("+")| base[i].equals("/")| base[i].equals("-") ){
+                        fw.write("	<TD ALIGN=\"CENTER\"><FONT COLOR=\"BLUE\">" + "Operacional" + "</FONT></TD>\n");
+
+                    }else if (base[i].equals("(") | base[i].equals(")") | base[i].equals("[") | base[i].equals("]") | base[i].equals("{") | base[i].equals("}")){
+                        fw.write("	<TD ALIGN=\"CENTER\"><FONT COLOR=\"BLUE\">" + "Agrupación" + "</FONT></TD>\n");
+
+                    }else if (base[i].equals("<") | base[i].equals(">") | base[i].equals("==") | base[i].equals("=")){
+                        fw.write("	<TD ALIGN=\"CENTER\"><FONT COLOR=\"BLUE\">" + "Relacionales" + "</FONT></TD>\n");
+
+                    }else if (base[i].equals("")){
+                        colu++;
+                        fw.write("	<TD ALIGN=\"CENTER\"><FONT COLOR=\"BLUE\">" + "Espacio" + "</FONT></TD>\n");
+
+                    }else if (base[i].equals(",") | base[i].equals(":") | base[i].equals(";") | base[i].equals(".")){
+                        fw.write("	<TD ALIGN=\"CENTER\"><FONT COLOR=\"BLUE\">" + "Signo" + "</FONT></TD>\n");
+
+                    }else if (base[i].equals("0") | base[i].equals("1") | base[i].equals("2") | base[i].equals("3") | base[i].equals("4") | base[i].equals("5") | base[i].equals("6") | base[i].equals("7") | base[i].equals("8") | base[i].equals("9")   ){
+                        fw.write("	<TD ALIGN=\"CENTER\"><FONT COLOR=\"BLUE\">" + "Número" + "</FONT></TD>\n");
+
+                    }else if (base[i].equals(identificadores)){
+                        fw.write("	<TD ALIGN=\"CENTER\"><FONT COLOR=\"BLUE\">" + "Palabras" + "</FONT></TD>\n");
+
+                    } else if(base[i].equals("\n") ){
+                        fw.write("	<TD ALIGN=\"CENTER\"><FONT COLOR=\"BLUE\">" + "Salto de linea" + "</FONT></TD>\n");
+                        colu=0;
+                        fil++;
+
+                    }else{
+                        fw.write("	<TD ALIGN=\"CENTER\"><FONT COLOR=\"BLUE\">" + "ID" + "</FONT></TD>\n");
+                    }
+
+                    fw.write("<TD ALIGN=\"CENTER\"><FONT COLOR=\"BLUE\">" + fil + "</FONT></TD>\n");
+
+                    fw.write("	<TD ALIGN=\"CENTER\"><FONT COLOR=\"BLUE\">" + colu + "</FONT></TD>\n");
+
+                    //   separa las palabras y cuenta las veces que aparece.
+                    String t = base[i];
+                    String [] pala = t.split("");
+                    int canti = pala.length;
+
+                    fw.write("	<TD ALIGN=\"CENTER\"><FONT COLOR=\"BLUE\">" + canti + "</FONT></TD>\n");
+                    fw.write("	</TR>\n");
+
+                }
+                //   }
+            fw.write("</TABLE>" + "\n");
+            fw.flush();
+            fw.close();
+
+        }catch(IOException er){
+            System.out.println(er);
+        }
+
+        }else{
+            JOptionPane.showMessageDialog(null, "Su analisis tiene algun error, No se puede Realizar el Archivo de Tokens");
+        }
+        
+       /* try {
+            File path;
+            path = new File(C:\\Users\\danie\\Desktop\\Proyecto2\\P2D\\Reportes1\\Tokens.HTML);
+            Desktop.getDesktop().open(path);
+        } catch (Exception e) {
+        }*/
+    }//GEN-LAST:event_jbArchsalidaActionPerformed
+
+    
+    /**
+     * Arhivo de salida mostrando errores
+     * 
+     * @param evt 
+     */
+    private void jButtonSalidaErrorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalidaErrorActionPerformed
+
+        String ErrorDeToken= jTextArea1.getText();
+        int contadorToken=0;
+        String raiz2="";
+        int numero=0;
+        String[] Error1 = new String [1000000];
+        String[] vacio = new String[1000000];
+        int existe1=0;
+        do{
+            raiz2=""+ErrorDeToken.charAt(contadorToken);
+            if (raiz2.equals("@")){
+                System.out.println("existe un @");
+                Error1[existe1]="@";
+                existe1++;
+            }else if(raiz2.equals("#")){
+                Error1[existe1]="#";
+                existe1++;
+            }else{
+                vacio[contadorToken]="";
+            }
+            contadorToken++;
+        }while(contadorToken <ErrorDeToken.length());
+        System.out.println("El existe1 tiene="+existe1);
+
+        try{
+            FileWriter fw = new FileWriter("Reportes1/Errores.html");
+            fw.write("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\" />" + "\n"  + "\n");
+            fw.write("<HTML><HEAD><TITLE>LENGUAJES FORMALES DE PROGRAMACIÓN</TITLE></HEAD>" + "\n" + "\n");
+            fw.write("<H1><CENTER><B><FONT SIZE=\"9\" COLOR=\"BLACK\">LISTADO DE ERRORES" + "</FONT></B></H1>" + "\n" + "\n");
+            fw.write("<HR>" + "\n" + "\n");
+            fw.write("<BR><CENTER><TABLE BORDER=1>\n");
+            fw.write("	<TR>\n");
+            fw.write("	<TD ALIGN=\"CENTER\"><FONT COLOR=\"BLACK\"><B>NO.</B></FONT></TD>\n");
+            fw.write("	<TD ALIGN=\"CENTER\"><FONT COLOR=\"BLACK\"><B>Lexema</B></FONT></TD>\n");
+            fw.write("	<TD ALIGN=\"CENTER\"><FONT COLOR=\"BLACK\"><B>Descripcion</B></FONT></TD>\n");
+
+            fw.write("	</TR>\n");
+            String[] result = jTextArea1.getText().split("\\s");
+            // Nodo registro = new Nodo();
+            //registro = lista.getInicio();
+            for(int so=0; so<existe1;so++){
+                numero++;
+                fw.write("	<TR>\n");
+                fw.write("	<TD ALIGN=\"CENTER\"><FONT COLOR=\"RED\">" + numero + "</FONT></TD>\n");
+                fw.write("	<TD ALIGN=\"CENTER\"><FONT COLOR=\"BLUE\">" + Error1[so] + "</FONT></TD>\n");
+                fw.write("	<TD ALIGN=\"CENTER\"><FONT COLOR=\"BLUE\">" + "Error Lexico"  + "</FONT></TD>\n");
+
+                fw.write("	</TR>\n");
+
+                //registro=registro.sig;
+            }
+            fw.write("</TABLE>" + "\n");
+            fw.flush();
+            fw.close();
+
+        }catch(IOException er){
+            System.out.println(er);
+        }
+
+    }//GEN-LAST:event_jButtonSalidaErrorActionPerformed
+
+    
+    /**
+     * Hacia inicio
+     * @param evt 
+     */
+    private void jButtonHaciaInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonHaciaInicioActionPerformed
+        // TODO add your handling code here:
+
+        this.setVisible(false);
+
+        new Inicio().setVisible(true);
+
+        setSize(1190, 960);
+        dispose();
+    }//GEN-LAST:event_jButtonHaciaInicioActionPerformed
+
+/**
+ * Boton de salir
+ * @param evt 
+ */
+    private void jButtonHaciaEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonHaciaEActionPerformed
+        // TODO add your handling code here:
+
+        System.exit(0);
+
+    }//GEN-LAST:event_jButtonHaciaEActionPerformed
+
+    private void jButtonAnalizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonAnalizarMouseClicked
+        // TODO add your handling code here:
+         /* botonSolicitar.setVisible(true);
+        String textoArea [] = jTextArea1.getText().split(" ");
+        analisis = new Analizador(jTextArea1.getText(),this);
+//        analisis.insertarCadena(textoArea);
+        botonAnalizar.setEnabled(false);*/
+    }//GEN-LAST:event_jButtonAnalizarMouseClicked
 
     /**
      * @param args the command line arguments
@@ -644,14 +967,17 @@ public class Analizador extends javax.swing.JFrame {
     private javax.swing.JMenuItem MI_pegar;
     private javax.swing.JMenu M_Archivo;
     private javax.swing.JMenu M_edicion;
+    private javax.swing.JButton jButtonAnalizar;
     private javax.swing.JButton jButtonAtxt;
     private javax.swing.JButton jButtonGuardarA;
     private javax.swing.JButton jButtonHaciaE;
-    private javax.swing.JButton jButtonHaciaE1;
+    private javax.swing.JButton jButtonHaciaInicio;
+    private javax.swing.JButton jButtonSalidaError;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JButton jbArchsalida;
     private javax.swing.JLabel lblImg;
     // End of variables declaration//GEN-END:variables
 }

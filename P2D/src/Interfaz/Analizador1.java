@@ -9,13 +9,17 @@ package Interfaz;
  *
  * @author danie
  */
-public class Analizador1 extends javax.swing.JFrame {
+public class Analizador1 extends javax.swing.JFrame  {
 
     /**
      * Creates new form Analizador1
      */
     public Analizador1() {
         initComponents();
+        
+        this.setLocationRelativeTo(null);
+        setTitle("ANALIZADOR");
+        
     }
 
     /**
@@ -27,27 +31,91 @@ public class Analizador1 extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jButtonHaciaE = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
+        jButtonAtxt = new javax.swing.JButton();
+        jButtonHaciaE1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(null);
+
+        jButtonHaciaE.setBackground(new java.awt.Color(255, 255, 255));
+        jButtonHaciaE.setFont(new java.awt.Font("Dubai", 3, 24)); // NOI18N
+        jButtonHaciaE.setForeground(new java.awt.Color(0, 255, 0));
+        jButtonHaciaE.setText("Regresar");
+        jButtonHaciaE.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonHaciaEActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButtonHaciaE);
+        jButtonHaciaE.setBounds(100, 530, 200, 80);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/FinesseGrande.png"))); // NOI18N
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(0, 0, 1810, 1300);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
+        jTextArea1.setBackground(new java.awt.Color(255, 255, 255));
+        jTextArea1.setColumns(20);
+        jTextArea1.setFont(new java.awt.Font("Dubai Light", 0, 36)); // NOI18N
+        jTextArea1.setForeground(new java.awt.Color(0, 0, 0));
+        jTextArea1.setRows(5);
+        jScrollPane1.setViewportView(jTextArea1);
+
+        getContentPane().add(jScrollPane1);
+        jScrollPane1.setBounds(30, 160, 690, 460);
+
+        jButtonAtxt.setBackground(new java.awt.Color(255, 255, 255));
+        jButtonAtxt.setFont(new java.awt.Font("Dubai Medium", 0, 36)); // NOI18N
+        jButtonAtxt.setForeground(new java.awt.Color(0, 255, 0));
+        jButtonAtxt.setText("Abrir Archivo de Texto");
+        jButtonAtxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAtxtActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButtonAtxt);
+        jButtonAtxt.setBounds(30, 80, 380, 60);
+
+        jButtonHaciaE1.setBackground(new java.awt.Color(255, 255, 255));
+        jButtonHaciaE1.setFont(new java.awt.Font("Dubai", 3, 36)); // NOI18N
+        jButtonHaciaE1.setForeground(new java.awt.Color(0, 255, 0));
+        jButtonHaciaE1.setText("Analizar");
+        jButtonHaciaE1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonHaciaE1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButtonHaciaE1);
+        jButtonHaciaE1.setBounds(780, 180, 220, 70);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButtonHaciaEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonHaciaEActionPerformed
+        // TODO add your handling code here:
+
+         this.setVisible(false);
+
+        new Analizador().setVisible(true);
+        
+       setSize(1190, 960);
+       dispose();
+
+    }//GEN-LAST:event_jButtonHaciaEActionPerformed
+
+    private void jButtonAtxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAtxtActionPerformed
+
+       
+    }//GEN-LAST:event_jButtonAtxtActionPerformed
+
+    private void jButtonHaciaE1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonHaciaE1ActionPerformed
+        // TODO add your handling code here:
+
+      
+    }//GEN-LAST:event_jButtonHaciaE1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -85,6 +153,11 @@ public class Analizador1 extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonAtxt;
+    private javax.swing.JButton jButtonHaciaE;
+    private javax.swing.JButton jButtonHaciaE1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextArea jTextArea1;
     // End of variables declaration//GEN-END:variables
 }

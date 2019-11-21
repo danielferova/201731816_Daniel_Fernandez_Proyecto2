@@ -23,6 +23,7 @@ public class Inicio extends javax.swing.JFrame {
     public Inicio() {
         initComponents();
            this.setLocationRelativeTo(null);
+           setSize(1190, 860);
            setTitle("ANALIZADOR");
     }
 
@@ -43,6 +44,7 @@ public class Inicio extends javax.swing.JFrame {
         MI_Ayuda = new javax.swing.JMenu();
         MI_mu = new javax.swing.JMenuItem();
         MI_mt = new javax.swing.JMenuItem();
+        MI_mu1 = new javax.swing.JMenuItem();
         MI_ac = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -77,7 +79,7 @@ public class Inicio extends javax.swing.JFrame {
         lblBienvenidos.setText("! Analizador Léxico FEROVA !");
         lblBienvenidos.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         getContentPane().add(lblBienvenidos);
-        lblBienvenidos.setBounds(110, 680, 1030, 45);
+        lblBienvenidos.setBounds(20, 520, 1030, 45);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/FinesseGrande.png"))); // NOI18N
         getContentPane().add(jLabel1);
@@ -93,7 +95,7 @@ public class Inicio extends javax.swing.JFrame {
         MI_Ayuda.setBackground(new java.awt.Color(102, 102, 102));
         MI_Ayuda.setForeground(new java.awt.Color(51, 255, 51));
         MI_Ayuda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/help.png"))); // NOI18N
-        MI_Ayuda.setText("Información");
+        MI_Ayuda.setText("Ayuda");
 
         MI_mu.setBackground(new java.awt.Color(255, 255, 255));
         MI_mu.setForeground(new java.awt.Color(255, 0, 0));
@@ -116,6 +118,17 @@ public class Inicio extends javax.swing.JFrame {
             }
         });
         MI_Ayuda.add(MI_mt);
+
+        MI_mu1.setBackground(new java.awt.Color(255, 255, 255));
+        MI_mu1.setForeground(new java.awt.Color(255, 0, 0));
+        MI_mu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/usuario.png"))); // NOI18N
+        MI_mu1.setText("GRAMÁTICA");
+        MI_mu1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MI_mu1ActionPerformed(evt);
+            }
+        });
+        MI_Ayuda.add(MI_mu1);
 
         MI_ac.setBackground(new java.awt.Color(255, 255, 255));
         MI_ac.setForeground(new java.awt.Color(255, 0, 0));
@@ -153,12 +166,12 @@ public class Inicio extends javax.swing.JFrame {
     }//GEN-LAST:event_ButtonAnalizadorActionPerformed
 
     private void MI_muActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MI_muActionPerformed
-        /*try {
+        try {
             File path;
-            path = new File ("Manuales/ManualdeUsuario.pdf");
+            path = new File ("Manuales/ManualUsuarioP2.pdf");
             Desktop.getDesktop().open(path);
         }catch (IOException ex) {
-        }*/
+        }
 
     }//GEN-LAST:event_MI_muActionPerformed
 
@@ -174,6 +187,17 @@ public class Inicio extends javax.swing.JFrame {
     private void MI_acActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MI_acActionPerformed
         JOptionPane.showMessageDialog(null,"Creado por : Daniel Eduardo Fernández Ovando"+ "\n"+ "No. Carnet: 201731816" +"\n" + "Versión: 1.0");
     }//GEN-LAST:event_MI_acActionPerformed
+
+    private void MI_mu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MI_mu1ActionPerformed
+        // TODO add your handling code here:
+        try {
+            File path;
+            path = new File ("Manuales/GramaticaP2.pdf");
+            Desktop.getDesktop().open(path);
+        }catch (IOException ex) {
+        }
+        
+    }//GEN-LAST:event_MI_mu1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -217,6 +241,7 @@ public class Inicio extends javax.swing.JFrame {
     private javax.swing.JMenuItem MI_ac;
     private javax.swing.JMenuItem MI_mt;
     private javax.swing.JMenuItem MI_mu;
+    private javax.swing.JMenuItem MI_mu1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JLabel lblBienvenidos;
