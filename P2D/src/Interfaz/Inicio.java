@@ -176,7 +176,7 @@ public class Inicio extends javax.swing.JFrame {
     private void MI_mtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MI_mtActionPerformed
         try {
             File path;
-            path = new File("Manuales/ManualTecnicoP2.docx");
+            path = new File("Manuales/ManualTecnicoP2.pdf");
             Desktop.getDesktop().open(path);
         } catch (IOException ex) {
         }
