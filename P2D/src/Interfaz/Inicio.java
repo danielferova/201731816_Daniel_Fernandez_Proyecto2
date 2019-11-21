@@ -10,7 +10,6 @@ import javax.swing.JOptionPane;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author danie
@@ -22,9 +21,9 @@ public class Inicio extends javax.swing.JFrame {
      */
     public Inicio() {
         initComponents();
-           this.setLocationRelativeTo(null);
-           setSize(1190, 860);
-           setTitle("ANALIZADOR");
+        this.setLocationRelativeTo(null);
+        setSize(1190, 860);
+        setTitle("ANALIZADOR");
     }
 
     /**
@@ -150,27 +149,26 @@ public class Inicio extends javax.swing.JFrame {
 
     private void ButtonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonSalirActionPerformed
         // TODO add your handling code here:
-        
+
         System.exit(0);
     }//GEN-LAST:event_ButtonSalirActionPerformed
 
     private void ButtonAnalizadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonAnalizadorActionPerformed
         // TODO add your handling code here:
-        
 
         Analizador entrada1 = new Analizador();
         entrada1.show();
-       entrada1.setSize(1190, 960);
-        
+        entrada1.setSize(1190, 960);
+
         dispose();
     }//GEN-LAST:event_ButtonAnalizadorActionPerformed
 
     private void MI_muActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MI_muActionPerformed
         try {
             File path;
-            path = new File ("Manuales/ManualUsuarioP2.pdf");
+            path = new File("Manuales/ManualUsuarioP2.pdf");
             Desktop.getDesktop().open(path);
-        }catch (IOException ex) {
+        } catch (IOException ex) {
         }
 
     }//GEN-LAST:event_MI_muActionPerformed
@@ -178,25 +176,25 @@ public class Inicio extends javax.swing.JFrame {
     private void MI_mtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MI_mtActionPerformed
         try {
             File path;
-            path = new File ("Manuales/ManualTecnicoP2.docx");
+            path = new File("Manuales/ManualTecnicoP2.docx");
             Desktop.getDesktop().open(path);
-        }catch (IOException ex) {
+        } catch (IOException ex) {
         }
     }//GEN-LAST:event_MI_mtActionPerformed
 
     private void MI_acActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MI_acActionPerformed
-        JOptionPane.showMessageDialog(null,"Creado por : Daniel Eduardo Fernández Ovando"+ "\n"+ "No. Carnet: 201731816" +"\n" + "Versión: 1.0");
+        JOptionPane.showMessageDialog(null, "Creado por : Daniel Eduardo Fernández Ovando" + "\n" + "No. Carnet: 201731816" + "\n" + "Versión: 1.0");
     }//GEN-LAST:event_MI_acActionPerformed
 
     private void MI_mu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MI_mu1ActionPerformed
         // TODO add your handling code here:
         try {
             File path;
-            path = new File ("Manuales/GramaticaP2.pdf");
+            path = new File("Manuales/GramaticaP2.pdf");
             Desktop.getDesktop().open(path);
-        }catch (IOException ex) {
+        } catch (IOException ex) {
         }
-        
+
     }//GEN-LAST:event_MI_mu1ActionPerformed
 
     /**
